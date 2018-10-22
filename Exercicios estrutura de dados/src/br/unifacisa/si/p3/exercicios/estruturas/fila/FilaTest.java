@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import br.unifacisa.si.p3.exercicios.estruturas.lista.EstadoInvalidoException;
-
 /**
  * @author ted
  *
