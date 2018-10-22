@@ -38,7 +38,7 @@ class ListaSequencialTest {
 	}
 
 	@Test
-	void testAddPosicao() throws EstadoInvalidoException {
+	void testAddPosicao() throws EstadoInvalidoException, PosicaoInvalidaException {
 
 		listaSequencial.adicionar("Item 1",0);
 		listaSequencial.adicionar("Item 2",1);
@@ -59,7 +59,7 @@ class ListaSequencialTest {
 	@Test
 	void testAddPosicaoInvalida() {
 
-		Assertions.assertThrows(EstadoInvalidoException.class, () -> {
+		Assertions.assertThrows(PosicaoInvalidaException.class, () -> {
 			listaSequencial.adicionar("Item 1",-1);
 		});
 	}

@@ -9,24 +9,60 @@ public class ListaSequencial {
 	private int inseridos;
 
 	public void adicionar(Object item) throws EstadoInvalidoException {
+		
+		if(item == null) {
+			throw new EstadoInvalidoException("O item não pode ser null");
+		}
+		
 
 		if (inseridos == arrayInterno.length) {
 
-			Object[] novo = new Object[arrayInterno.length * 2];
-
-			for (int i = 0; i < arrayInterno.length; i++) {
-				novo[i] = arrayInterno[i];
-			}
-
-			arrayInterno = novo;
+			aumentarArray();
 		}
 
 		arrayInterno[inseridos] = item;
 		inseridos++;
 	}
 
-	public void adicionar(Object item, int posicao) throws EstadoInvalidoException {
+	/**
+	 * Aumenta o tamanho da lista
+	 */
+	private void aumentarArray() {
+		Object[] novo = new Object[arrayInterno.length * 2];
 
+		for (int i = 0; i < arrayInterno.length; i++) {
+			novo[i] = arrayInterno[i];
+		}
+
+		arrayInterno = novo;
+	}
+
+	public void adicionar(Object item, int posicao) throws EstadoInvalidoException, PosicaoInvalidaException {
+		
+		if(item == null) {
+			throw new EstadoInvalidoException("O item não pode ser null");
+		}
+		
+		if (posicao < 0 || posicao >= arrayInterno.length) {
+			throw new PosicaoInvalidaException("Posição inválida");
+		}
+		
+		if (inseridos == arrayInterno.length) {
+
+			aumentarArray();
+		}
+		
+		if(arrayInterno[posicao] != null) {
+			
+			for (int i = posicao + 1; i < inseridos; i++) {
+				Object aux = arrayInterno[posicao + 1];
+				arrayInterno[i] = arrayInterno[posicao];
+				arrayInterno[i + 1] = aux;
+			}
+		}
+		
+		arrayInterno[posicao] = item;
+		inseridos++;
 	}
 
 	public Object obter(int indice) {
@@ -34,7 +70,7 @@ public class ListaSequencial {
 	}
 
 	public void remover(Object item) throws PosicaoInvalidaException {
-
+		
 		int posicaoEncontrada = -1;
 
 		if (item != null) {
