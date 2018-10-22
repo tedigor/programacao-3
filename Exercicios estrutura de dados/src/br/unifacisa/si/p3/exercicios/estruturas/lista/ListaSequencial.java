@@ -37,6 +37,12 @@ public class ListaSequencial {
 		arrayInterno = novo;
 	}
 
+	/**
+	 * @param item
+	 * @param posicao
+	 * @throws EstadoInvalidoException
+	 * @throws PosicaoInvalidaException
+	 */
 	public void adicionar(Object item, int posicao) throws EstadoInvalidoException, PosicaoInvalidaException {
 		
 		if(item == null) {
